@@ -14,26 +14,26 @@ import java.util.HashSet;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ServerTest {
-    Account account;
     Card card;
+    Balance balance;
+    Server server;
 
     @BeforeEach
     void setUp() {
-        account = new Account(
-                new HashSet<>(),
-                "40817810570000123456",
-                new Balance(BigDecimal.TEN, Currency.USD)
-        );
         card = new Card(
                 "1234 5678 8765 4321",
                 "Artem Astafev",
                 LocalDate.of(2030, 1, 1),
                 "0000"
         );
+
+        balance = new Balance(BigDecimal.TEN, Currency.USD);
+
+        server = new Server();
     }
 
     @Test
-    void getAccountFromCardTest() {
-        assertEquals(account, Server.getAccountFromCard(card));
+    void getCardAccountBalanceTest() {
+        assertEquals(balance, server.getCardAccountBalance(card));
     }
 }

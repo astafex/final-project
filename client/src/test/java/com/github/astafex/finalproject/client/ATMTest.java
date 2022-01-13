@@ -9,11 +9,12 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ATMTest {
     Card card;
     Balance balance;
+    ATM atm;
 
     @BeforeEach
     void setUp() {
@@ -25,10 +26,12 @@ class ATMTest {
         );
 
         balance = new Balance(BigDecimal.TEN, Currency.USD);
+
+        atm = new ATM();
     }
 
     @Test
     void getAccountBalanceFromCardTest() {
-        assertEquals(balance, ATM.getAccountBalanceFromCard(card));
+        assertEquals(balance, atm.getCardAccountBalance(card));
     }
 }
