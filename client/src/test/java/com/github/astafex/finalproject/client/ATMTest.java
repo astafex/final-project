@@ -3,6 +3,7 @@ package com.github.astafex.finalproject.client;
 import com.github.astafex.finalproject.atm.entity.Card;
 import com.github.astafex.finalproject.server.entity.Balance;
 import com.github.astafex.finalproject.server.entity.Currency;
+import com.github.astafex.finalproject.service.Server;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +28,7 @@ class ATMTest {
 
         balance = new Balance(BigDecimal.TEN, Currency.USD);
 
-        atm = new ATM();
+        atm = new ATM(new Server());
     }
 
     @Test

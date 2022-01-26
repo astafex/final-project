@@ -11,18 +11,21 @@
 
     <groupId>com.github.astafex.finalproject</groupId>
     <artifactId>server</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>com.github.astafex.finalproject</groupId>
-            <artifactId>atm</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+
+        <atm.version>1.0-SNAPSHOT</atm.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.astafex.finalproject</groupId>
+            <artifactId>atm</artifactId>
+            <version>${atm.version}</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 </project>

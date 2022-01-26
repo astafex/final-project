@@ -11,42 +11,35 @@
 
     <groupId>com.github.astafex.finalproject</groupId>
     <artifactId>client</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>com.github.astafex.finalproject</groupId>
-            <artifactId>atm</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.astafex.finalproject</groupId>
-            <artifactId>atm</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.astafex.finalproject</groupId>
-            <artifactId>server</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.astafex.finalproject</groupId>
-            <artifactId>server</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.astafex.finalproject</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+
+        <atm.version>1.0-SNAPSHOT</atm.version>
+        <server.version>1.0-SNAPSHOT</server.version>
+        <service.version>1.0-SNAPSHOT</service.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.astafex.finalproject</groupId>
+            <artifactId>atm</artifactId>
+            <version>${atm.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.astafex.finalproject</groupId>
+            <artifactId>server</artifactId>
+            <version>${server.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.astafex.finalproject</groupId>
+            <artifactId>service</artifactId>
+            <version>${service.version}</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
 </project>
