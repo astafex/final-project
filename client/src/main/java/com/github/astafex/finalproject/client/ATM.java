@@ -1,7 +1,7 @@
 package com.github.astafex.finalproject.client;
 
-import com.github.astafex.finalproject.atm.entity.Card;
-import com.github.astafex.finalproject.server.entity.Balance;
+import com.github.astafex.finalproject.atm.Card;
+import com.github.astafex.finalproject.server.Balance;
 import com.github.astafex.finalproject.service.Server;
 import lombok.AllArgsConstructor;
 

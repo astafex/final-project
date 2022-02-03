@@ -1,4 +1,4 @@
-package com.github.astafex.finalproject.server.entity;
+package com.github.astafex.finalproject.server;
 
 import lombok.Value;
 

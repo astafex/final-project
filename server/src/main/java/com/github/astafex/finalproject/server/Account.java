@@ -1,6 +1,6 @@
-package com.github.astafex.finalproject.server.entity;
+package com.github.astafex.finalproject.server;
 
-import com.github.astafex.finalproject.atm.entity.Card;
+import com.github.astafex.finalproject.atm.Card;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Value;

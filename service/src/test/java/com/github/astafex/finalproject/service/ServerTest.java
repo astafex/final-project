@@ -1,15 +1,13 @@
 package com.github.astafex.finalproject.service;
 
-import com.github.astafex.finalproject.atm.entity.Card;
-import com.github.astafex.finalproject.server.entity.Account;
-import com.github.astafex.finalproject.server.entity.Balance;
-import com.github.astafex.finalproject.server.entity.Currency;
+import com.github.astafex.finalproject.atm.Card;
+import com.github.astafex.finalproject.server.Balance;
+import com.github.astafex.finalproject.server.Currency;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
