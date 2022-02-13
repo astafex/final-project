@@ -1,0 +1,7 @@
+server:
+  port: 8080
+resource:
+  url: "http://localhost:8080/"
+  login: "admin"
+  password: "admin"
+
