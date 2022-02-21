@@ -21,4 +21,9 @@ public class HostRestController {
         AccountDto accountDto = cardService.getAccount(cardDto);
         return accountService.getBalance(accountDto);
     }
+
+    @GetMapping("/status")
+    public String getStatusHost() {
+        return "{host: \"available\"}";
+    }
 }
