@@ -1,4 +1,4 @@
--- --DLL--
+---------------------DDL---------------------
 -- DROP TABLE IF EXISTS BALANCE;
 -- DROP TABLE IF EXISTS CARD;
 -- DROP TABLE IF EXISTS ACCOUNT;
@@ -35,10 +35,9 @@
 --
 -- CREATE UNIQUE INDEX CARDS_NUMBER_UINDEX
 --     ON CARD (NUMBER_CARD);
---
---
 
---DML--
+
+---------------------DML---------------------
 INSERT INTO ACCOUNT (NUMBER_ACCOUNT)
 VALUES ('00000000000000000001'),
        ('00000000000000000002'),
@@ -46,10 +45,11 @@ VALUES ('00000000000000000001'),
 
 INSERT INTO CARD (NUMBER_CARD, HOLDER_NAME, EXPIRATION_DATE, PIN, BLOCKED, ACCOUNT_ID)
 VALUES ('1111111111111111', 'Christopher_Nolan', '2024-09-01', 1111, 'false', 1),
-       ('2222222222222222', 'Quentin_Tarantino', '2024-09-01', 2222, 'false', 2),
-       ('3333333333333333', 'Martin_Scorsese', '2021-01-01', 3333, 'false', 3);
+       ('2222222222222222', 'Quentin_Tarantino', '2024-09-01', 2222, 'true', 2),
+       ('3333333333333333', 'Martin_Scorsese', '2020-01-01', 3333, 'false', 3),
+       ('4444444444444444', 'Martin_Scorsese', '2024-01-01', 4444, 'false', 3);
 
 INSERT INTO BALANCE (AMOUNT, CURRENCY, ACCOUNT_ID)
-VALUES ('11111.11', 'USD', 1),
-       ('22222.22', 'USD', 2),
-       ('33333.33', 'USD', 3);
+VALUES ('11111.11', 'RUB', 1),
+       ('22222.22', 'RUB', 2),
+       ('33333.33', 'EUR', 3);

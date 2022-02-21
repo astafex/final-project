@@ -32,15 +32,15 @@ class HostRestControllerTest {
 
 
     @BeforeEach
-    public void init() {
+    void init() {
         card = new CardDto("1111111111111111", 1111);
         user = "atm";
         password = "password";
-        balance = new BalanceDto(new BigDecimal("11111.11"), "USD");
+        balance = new BalanceDto(BigDecimal.valueOf(11111.11), "USD");
     }
 
     @Test
-    public void getStatusHostTestForAuthorized() {
+    void getStatusHostTestForAuthorized() {
         ResponseEntity<String> result = template
                 .withBasicAuth(user, password)
                 .getForEntity("/host/status", String.class);
@@ -48,7 +48,7 @@ class HostRestControllerTest {
     }
 
     @Test
-    public void getStatusHostTestForUnauthorized() {
+    void getStatusHostTestForUnauthorized() {
         password = "123";
         ResponseEntity<String> result = template
                 .withBasicAuth(user, password)
@@ -57,7 +57,7 @@ class HostRestControllerTest {
     }
 
     @Test
-    public void getBalanceByCardTest() {
+    void getBalanceByCardTest() {
         HttpEntity<CardDto> httpEntity = new HttpEntity<>(card);
         ResponseEntity<BalanceDto> result = template
                 .withBasicAuth(user, password)

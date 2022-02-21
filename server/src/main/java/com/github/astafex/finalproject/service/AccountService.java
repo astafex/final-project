@@ -4,6 +4,7 @@ import com.github.astafex.finalproject.dto.AccountDto;
 import com.github.astafex.finalproject.dto.BalanceDto;
 import com.github.astafex.finalproject.entity.Account;
 import com.github.astafex.finalproject.entity.Balance;
+import com.github.astafex.finalproject.exception.AccountNotFoundException;
 import com.github.astafex.finalproject.repository.AccountRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,8 @@ public class AccountService {
     private AccountRepository accountRepository;
 
     public BalanceDto getBalance(AccountDto accountDto) {
-        Account account = accountRepository.getAccountByNumber(accountDto.getNumber());
+        Account account = accountRepository.getAccountByNumber(accountDto.getNumber())
+                .orElseThrow(AccountNotFoundException::new);
         Balance balance = account.getBalance();
         return new BalanceDto(
                 balance.getAmount(),

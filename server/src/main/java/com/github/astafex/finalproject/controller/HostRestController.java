@@ -17,6 +17,7 @@ public class HostRestController {
 
     @PostMapping("/card/balance")
     public BalanceDto getBalanceByCard(@RequestBody CardDto cardDto) {
+        System.out.println(cardDto);
         AccountDto accountDto = cardService.getAccount(cardDto);
         return accountService.getBalance(accountDto);
     }
