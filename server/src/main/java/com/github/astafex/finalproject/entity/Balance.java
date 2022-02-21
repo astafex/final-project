@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @Table(name = "BALANCE")
 public class Balance {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     long id;
 

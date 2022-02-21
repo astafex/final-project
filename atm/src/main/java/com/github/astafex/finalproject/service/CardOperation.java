@@ -32,7 +32,6 @@ public class CardOperation {
         httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
         HttpEntity<CardDto> httpRequest = new HttpEntity<>(card, httpHeaders);
-        //System.out.println(httpRequest);
 
         ResponseEntity<BalanceDto> response = restTemplate.exchange(RESOURCE_URL + "/card/balance", HttpMethod.POST, httpRequest, BalanceDto.class);
 

@@ -36,7 +36,7 @@ class HostRestControllerTest {
         card = new CardDto("1111111111111111", 1111);
         user = "atm";
         password = "password";
-        balance = new BalanceDto(new BigDecimal("11111.1"), "USD");
+        balance = new BalanceDto(new BigDecimal("11111.11"), "USD");
     }
 
     @Test
