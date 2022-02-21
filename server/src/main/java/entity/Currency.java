@@ -1,4 +1,4 @@
-package com.github.astafex.finalproject;
+package entity;
 
 public enum Currency {
     USD, EUR, RUB

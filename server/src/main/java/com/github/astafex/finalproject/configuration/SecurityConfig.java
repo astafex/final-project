@@ -16,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    //private final DataSource dataSource;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

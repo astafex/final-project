@@ -2,12 +2,29 @@
 server:
   port: 8081
 
-#spring:
-#  datasource:
-#    url: jdbc:h2:mem:atmdb
-#    username: atmdb_admin
-#    password: qwerty
-#    driverClassName: org.h2.Driver
-#  jpa:
-#    database-platform: org.hibernate.dialect.H2Dialect
+spring:
+  datasource:
+    url: jdbc:h2:mem:backdb
+    username: h2admin
+    password:
+    driverClassName: org.h2.Driver
+
+  sql:
+    init:
+      mode: always
+
+  jpa:
+    # После автогенерации запускается инициализация на основе schema.sql/data.sql
+    defer-datasource-initialization: true
+    hibernate:
+      # Отключает автогенерацию схемы на основе аннотаций (none)
+      ddl-auto: update
+      # generate-ddl: true
+    database-platform: org.hibernate.dialect.H2Dialect
+
+  h2:
+    console:
+      enabled: true
+      # http://localhost:8081/h2database/console
+      path: /h2database/console
 ...
