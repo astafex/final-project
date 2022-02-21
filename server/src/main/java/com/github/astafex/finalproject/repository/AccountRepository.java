@@ -1,6 +1,6 @@
 package com.github.astafex.finalproject.repository;
 
-import entity.Account;
+import com.github.astafex.finalproject.entity.Account;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

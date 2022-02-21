@@ -2,8 +2,8 @@ package com.github.astafex.finalproject.service;
 
 import com.github.astafex.finalproject.dto.AccountDto;
 import com.github.astafex.finalproject.dto.BalanceDto;
-import entity.Account;
-import entity.Balance;
+import com.github.astafex.finalproject.entity.Account;
+import com.github.astafex.finalproject.entity.Balance;
 import com.github.astafex.finalproject.repository.AccountRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

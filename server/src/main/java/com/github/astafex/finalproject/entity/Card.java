@@ -1,4 +1,4 @@
-package entity;
+package com.github.astafex.finalproject.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

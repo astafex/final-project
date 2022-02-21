@@ -20,9 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests(authorize -> authorize
-                        .antMatchers("/admin/**").hasRole("ADMIN")
-                        .antMatchers("/user/**").hasAnyRole("USER", "ADMIN")
-                        .antMatchers("/**").permitAll())
+                        .antMatchers("/host/**").hasAnyRole("ATM", "ADMIN")
+                        .antMatchers("/**").hasRole("ADMIN"))
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.maximumSessions(1))
                 .httpBasic();
@@ -31,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser(User.withUsername("user").password(passwordEncoder().encode("password")).roles("USER"))
+                .withUser(User.withUsername("atm").password(passwordEncoder().encode("password")).roles("ATM"))
                 .withUser(User.withUsername("admin").password(passwordEncoder().encode("password")).roles("ADMIN"));
     }
 
@@ -39,29 +38,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.authenticationProvider(authProvider());
-//    }
-
-//    @Bean
-//    public DaoAuthenticationProvider authProvider() {
-//        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-//        authProvider.setUserDetailsService(userDetailsService);
-//        authProvider.setPasswordEncoder(encoder());
-//        return authProvider;
-//    }
-
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.jdbcAuthentication()
-//                .dataSource(dataSource)
-//                .withDefaultSchema()
-//                .withUser(User.withUsername("user").password("password").roles("USER"))
-//                .withUser(User.withUsername("admin").password("password").roles("ADMIN"));
-//    }
-
 }
 
 

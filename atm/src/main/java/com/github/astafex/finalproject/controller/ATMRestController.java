@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/ATM/card")
+@RequestMapping("/ATM")
 @AllArgsConstructor
 public class ATMRestController {
     private CardOperation operation;
 
-    @GetMapping("/balance")
+    @GetMapping("/balance/card")
     public BalanceDto getBalance(@RequestParam("number") String number,
-                                 @RequestParam("PIN") int PIN) {
+                                 @RequestParam("pin") int PIN) {
         return operation.getBalance(number, PIN);
     }
 }

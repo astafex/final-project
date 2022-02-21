@@ -1,6 +1,5 @@
 package com.github.astafex.finalproject.service;
 
-import com.github.astafex.finalproject.dto.AccountDto;
 import com.github.astafex.finalproject.dto.BalanceDto;
 import com.github.astafex.finalproject.dto.CardDto;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,7 +9,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
-import java.util.Optional;
 
 @Service
 public class CardOperation {
@@ -34,12 +32,10 @@ public class CardOperation {
         httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
         HttpEntity<CardDto> httpRequest = new HttpEntity<>(card, httpHeaders);
-        ResponseEntity<AccountDto> response = restTemplate.exchange(RESOURCE_URL + "/host/balance", HttpMethod.POST, httpRequest, AccountDto.class);
+        System.out.println(httpRequest);
 
-        Optional<AccountDto> optional = Optional.ofNullable(response.getBody());
-        if (!optional.isPresent()) {
-            throw new RuntimeException();
-        }
-        return optional.get().getBalanceDto();
+        ResponseEntity<BalanceDto> response = restTemplate.exchange(RESOURCE_URL + "/card/balance", HttpMethod.POST, httpRequest, BalanceDto.class);
+
+        return response.getBody();
     }
 }

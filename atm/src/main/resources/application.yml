@@ -3,8 +3,8 @@ server:
   port: 8080
 
 resource:
-  url: "http://localhost:8081/"
-  login: "user"
+  url: "http://localhost:8081/host"
+  login: "atm"
   password: "password"
 ...
 
