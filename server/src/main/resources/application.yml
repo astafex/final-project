@@ -3,6 +3,9 @@ server:
   port: 8081
 ---
 spring:
+  main:
+    banner-mode: off
+
   datasource:
     url: jdbc:h2:mem:backdb
     username: h2admin

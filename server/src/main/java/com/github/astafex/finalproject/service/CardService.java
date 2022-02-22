@@ -24,13 +24,13 @@ public class CardService {
                 .orElseThrow(CardNotFoundException::new);
 
         if (card.getPIN() != cardDto.getPIN()) {
-            throw new CardCheckException("Введен неверный PIN.");
-        }
-        if (card.getExpirationDate().isBefore(LocalDate.now())) {
-            throw new CardCheckException("Срок действия карты истек.");
+            throw new CardCheckException("Введен неверный PIN");
         }
         if (card.isBlocked()) {
-            throw new CardCheckException("Карта заблокирована.");
+            throw new CardCheckException("Карта заблокирована");
+        }
+        if (card.getExpirationDate().isBefore(LocalDate.now())) {
+            throw new CardCheckException("Срок действия карты истек");
         }
 
         Account account = card.getAccount();
