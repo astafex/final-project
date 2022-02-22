@@ -1,25 +1,26 @@
 package com.github.astafex.finalproject.controller;
 
-import com.github.astafex.finalproject.dto.AccountDto;
 import com.github.astafex.finalproject.dto.BalanceDto;
 import com.github.astafex.finalproject.dto.CardDto;
-import com.github.astafex.finalproject.service.AccountService;
 import com.github.astafex.finalproject.service.CardService;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/host")
 @AllArgsConstructor
 public class HostRestController {
+    private static final Logger LOG = LoggerFactory.getLogger(CardService.class);
     private final CardService cardService;
-    private final AccountService accountService;
 
     @PostMapping("/card/balance")
     public BalanceDto getBalanceByCard(@RequestBody CardDto cardDto) {
-        System.out.println(cardDto);
-        AccountDto accountDto = cardService.getAccount(cardDto);
-        return accountService.getBalance(accountDto);
+        LOG.info(cardDto.toString());
+        BalanceDto balanceDto = cardService.getBalance(cardDto.getNumber(), cardDto.getPIN());
+        LOG.info(balanceDto.toString());
+        return balanceDto;
     }
 
     @GetMapping("/status")

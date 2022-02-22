@@ -1,7 +1,5 @@
 package com.github.astafex.finalproject.controller;
 
-
-import com.github.astafex.finalproject.exception.AccountNotFoundException;
 import com.github.astafex.finalproject.exception.CardCheckException;
 import com.github.astafex.finalproject.exception.CardNotFoundException;
 import org.springframework.http.HttpHeaders;
@@ -24,12 +22,6 @@ public class HostResponseExceptionHandler extends ResponseEntityExceptionHandler
     @ExceptionHandler(value = CardNotFoundException.class)
     protected ResponseEntity<Object> notFoundCardConflict(CardNotFoundException ex, WebRequest request) {
         String bodyOfResponse = "Карта не найдена";
-        return this.handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
-    }
-
-    @ExceptionHandler(value = AccountNotFoundException.class)
-    protected ResponseEntity<Object> notFoundAccountConflict(AccountNotFoundException ex, WebRequest request) {
-        String bodyOfResponse = "Счет не найден";
         return this.handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 }
