@@ -2,67 +2,34 @@ package com.github.astafex.finalproject.controller;
 
 import com.github.astafex.finalproject.dto.BalanceDto;
 import com.github.astafex.finalproject.dto.CardDto;
+import com.github.astafex.finalproject.service.CardService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.mockito.Mockito;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
+public class HostRestControllerTest {
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class HostRestControllerTest {
-
-    @Autowired
-    private TestRestTemplate template;
-    private String user;
-    private String password;
-    private CardDto card;
-    private BalanceDto balance;
+    private final CardService cardService = Mockito.mock(CardService.class);
+    private final CardDto card = new CardDto("1111111111111111", 1111);
+    private final BalanceDto balanceExpect = new BalanceDto(BigDecimal.valueOf(11111.11), "RUB");
+    private HostRestController controller;
 
 
     @BeforeEach
-    void init() {
-        card = new CardDto("1111111111111111", 1111);
-        user = "atm";
-        password = "password";
-        balance = new BalanceDto(BigDecimal.valueOf(11111.11), "USD");
+    void setUp() {
+        when(cardService.getBalance(card.getNumber(), card.getPIN()))
+                .thenReturn(new BalanceDto(BigDecimal.valueOf(11111.11), "RUB"));
+        controller = new HostRestController(cardService);
     }
 
     @Test
-    void getStatusHostTestForAuthorized() {
-        ResponseEntity<String> result = template
-                .withBasicAuth(user, password)
-                .getForEntity("/host/status", String.class);
-        assertEquals(HttpStatus.OK, result.getStatusCode());
-    }
-
-    @Test
-    void getStatusHostTestForUnauthorized() {
-        password = "123";
-        ResponseEntity<String> result = template
-                .withBasicAuth(user, password)
-                .getForEntity("/host/status", String.class);
-        assertEquals(HttpStatus.UNAUTHORIZED, result.getStatusCode());
-    }
-
-    @Test
-    void getBalanceByCardTest() {
-        HttpEntity<CardDto> httpEntity = new HttpEntity<>(card);
-        ResponseEntity<BalanceDto> result = template
-                .withBasicAuth(user, password)
-                .exchange("/host/card/balance", HttpMethod.POST, httpEntity, BalanceDto.class);
-        assertEquals(HttpStatus.OK, result.getStatusCode());
-        assertEquals(balance, result.getBody());
+    void getBalanceByCard_test() {
+        BalanceDto balanceProvide = controller.getBalanceByCard(card);
+        assertThat(balanceExpect).isEqualTo(balanceProvide);
     }
 }

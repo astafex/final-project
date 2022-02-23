@@ -20,17 +20,31 @@ public class CardService {
     private static final Logger LOG = LoggerFactory.getLogger(CardService.class);
     private final CardRepository cardRepository;
 
+    /**
+     * Метод выполняет поиск данных банковской карты в БД по переданному PAN-номеру, после чего возвращает баланс счета к которому принадлежит карта
+     *
+     * @param number номер карты
+     * @param PIN    пин-код карты
+     * @return объект класса {@link BalanceDto}, служащий для передачи между слоями приложения
+     * @throws CardNotFoundException если карты по PAN-номеру в БД не найдено карты
+     */
     public BalanceDto getBalance(String number, int PIN) {
         Card card = cardRepository.getCardByNumber(number)
-                .orElseThrow(CardNotFoundException::new);
+                .orElseThrow(() -> new CardNotFoundException("Карта не найдена"));
         checkCard(card, PIN);
 
         Account account = card.getAccount();
         Balance balance = account.getBalance();
-
         return new BalanceDto(balance.getAmount(), balance.getCurrency().name());
     }
 
+    /**
+     * Метод выполняет проверки действующей карты на корректность пин-кода, блокировку, срок действия
+     *
+     * @param card полные данные банковской карты
+     * @param PIN  пин-код карты
+     * @throws CardCheckException если не пройдена какая-либо проверка действующей карты
+     */
     private void checkCard(Card card, int PIN) {
         String checkMessage = "";
 

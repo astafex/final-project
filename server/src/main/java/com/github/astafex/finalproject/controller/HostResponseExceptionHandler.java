@@ -21,7 +21,7 @@ public class HostResponseExceptionHandler extends ResponseEntityExceptionHandler
 
     @ExceptionHandler(value = CardNotFoundException.class)
     protected ResponseEntity<Object> notFoundCardConflict(CardNotFoundException ex, WebRequest request) {
-        String bodyOfResponse = "Карта не найдена";
+        String bodyOfResponse = ex.getMessage();
         return this.handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 }

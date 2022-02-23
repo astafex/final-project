@@ -27,19 +27,7 @@ public class ATMResponseExceptionHandler extends ResponseEntityExceptionHandler 
         return this.handleExceptionInternal(httpError, bodyOfResponse, httpHeaders, httpError.getStatusCode(), request);
     }
 
-    @ExceptionHandler(value = ResourceAccessException.class)
-    protected ResponseEntity<Object> connectTimeout(ResourceAccessException connectError, WebRequest request) throws JsonProcessingException {
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON);
-
-        HttpStatus httpStatus = HttpStatus.REQUEST_TIMEOUT;
-        String bodyOfResponse = bodyOfResponse(
-                httpStatus,
-                "Удаленный сервер недоступен");
-        return this.handleExceptionInternal(connectError, bodyOfResponse, httpHeaders, httpStatus, request);
-    }
-
-    @ExceptionHandler(value = RuntimeException.class)
+    @ExceptionHandler(value = {RuntimeException.class, ResourceAccessException.class})
     protected ResponseEntity<Object> internalServerError(RuntimeException exception, WebRequest request) throws JsonProcessingException {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
@@ -47,7 +35,7 @@ public class ATMResponseExceptionHandler extends ResponseEntityExceptionHandler 
         HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         String bodyOfResponse = bodyOfResponse(
                 httpStatus,
-                "Неизвестная ошибка");
+                "Сервер не может обработать запрос");
         return this.handleExceptionInternal(exception, bodyOfResponse, httpHeaders, httpStatus, request);
     }
 

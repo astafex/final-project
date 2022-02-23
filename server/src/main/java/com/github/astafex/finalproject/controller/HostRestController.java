@@ -15,6 +15,12 @@ public class HostRestController {
     private static final Logger LOG = LoggerFactory.getLogger(CardService.class);
     private final CardService cardService;
 
+    /**
+     * Метод контроллера сервера вызывает сервис карт, для получения данных о балансе, после чего возвращает его
+     *
+     * @param cardDto объект карты предназначеный для передачи между приложений/слоями приложений
+     * @return объект класса {@link BalanceDto}, служащий для передачи между слоями приложения
+     */
     @PostMapping("/card/balance")
     public BalanceDto getBalanceByCard(@RequestBody CardDto cardDto) {
         LOG.info(cardDto.toString());
@@ -25,6 +31,6 @@ public class HostRestController {
 
     @GetMapping("/status")
     public String getStatusHost() {
-        return "{host: \"available\"}";
+        return "{\"host\":\"available\"}";
     }
 }
