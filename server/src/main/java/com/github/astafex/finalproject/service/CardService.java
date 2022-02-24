@@ -26,7 +26,7 @@ public class CardService {
      * @param number номер карты
      * @param PIN    пин-код карты
      * @return объект класса {@link BalanceDto}, служащий для передачи между слоями приложения
-     * @throws CardNotFoundException если карты по PAN-номеру в БД не найдено карты
+     * @throws CardNotFoundException если карты по PAN-номеру в БД не найдено
      */
     public BalanceDto getBalance(String number, int PIN) {
         Card card = cardRepository.getCardByNumber(number)
