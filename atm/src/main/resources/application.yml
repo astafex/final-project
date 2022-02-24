@@ -1,0 +1,13 @@
+---
+server:
+  port: 8080
+---
+resource:
+  url: "http://localhost:8081/host"
+  login: "atm"
+  password: "password"
+---
+spring:
+  main:
+    banner-mode: off
+...

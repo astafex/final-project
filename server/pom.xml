@@ -11,21 +11,45 @@
 
     <groupId>com.github.astafex.finalproject</groupId>
     <artifactId>server</artifactId>
- 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
 
-        <atm.version>1.0-SNAPSHOT</atm.version>
+    <properties>
+        <general.version>1.0-SNAPSHOT</general.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.github.astafex.finalproject</groupId>
-            <artifactId>atm</artifactId>
-            <version>${atm.version}</version>
+            <artifactId>general</artifactId>
+            <version>${general.version}</version>
             <scope>compile</scope>
         </dependency>
-    </dependencies>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
 </project>
