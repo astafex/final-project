@@ -2,9 +2,10 @@ package com.github.astafex.finalproject.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.astafex.finalproject.dto.BalanceDto;
-import com.github.astafex.finalproject.service.CardOperation;
+import com.github.astafex.finalproject.service.CardOperationService;
 import com.github.astafex.finalproject.service.Response;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -29,6 +30,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc()
+//TODO @SpringJunitConfig - посмотреть на эту бляцкую антонацию
+
 class ATMRestControllerTest {
     @Autowired
     private MockMvc mockMvc;
@@ -37,7 +40,8 @@ class ATMRestControllerTest {
     private ATMRestController controller;
 
     @Mock
-    private CardOperation operation;
+    //TODO - @MockBean
+    private CardOperationService operation;
 
     @BeforeEach
     void setUp() {
@@ -51,6 +55,7 @@ class ATMRestControllerTest {
     }
 
     @Test
+    // TODO - аннотация @DisplayName("Name test method") на замену ебаным названиям методов
     void getBalanceByCard_successTest() {
         controller = new ATMRestController(operation);
         Response response = controller.getBalanceByCard("1111111111111111", 1111);

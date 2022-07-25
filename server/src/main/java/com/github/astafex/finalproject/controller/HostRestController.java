@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class HostRestController {
     private static final Logger LOG = LoggerFactory.getLogger(CardService.class);
+    //TODO interface
     private final CardService cardService;
 
     /**
@@ -22,6 +23,7 @@ public class HostRestController {
      * @return объект класса {@link BalanceDto}, служащий для передачи между слоями приложения
      */
     @PostMapping("/card/balance")
+    //TODO ResponseEntity
     public BalanceDto getBalanceByCard(@RequestBody CardDto cardDto) {
         LOG.info(cardDto.toString());
         BalanceDto balanceDto = cardService.getBalance(cardDto.getNumber(), cardDto.getPIN());

@@ -15,10 +15,13 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "CARD")
+
+//TODO нет модификаторов доступа (вспомни почему)
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
+    //TODO long -> UUID
     private long id;
 
     @Column(name = "NUMBER_CARD", unique = true, nullable = false)

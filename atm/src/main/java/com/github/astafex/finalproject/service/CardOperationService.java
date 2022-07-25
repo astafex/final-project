@@ -15,16 +15,18 @@ import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 
 @Service
-public class CardOperation {
-    private static final Logger LOG = LoggerFactory.getLogger(CardOperation.class);
+//TODO сделать интерфейс
+public class CardOperationService {
+    private static final Logger LOG = LoggerFactory.getLogger(CardOperationService.class);
 
     private final String RESOURCE_URL;
     private final String ENCODE_BASIC_AUTH;
 
-    public CardOperation(@Value("${resource.url}") String RESOURCE_URL,
-                         @Value("${resource.login}") String RESOURCE_LOGIN,
-                         @Value("${resource.password}") String RESOURCE_PASSWORD) {
+    public CardOperationService(@Value("${resource.url}") String RESOURCE_URL,
+                                @Value("${resource.login}") String RESOURCE_LOGIN,
+                                @Value("${resource.password}") String RESOURCE_PASSWORD) {
         this.RESOURCE_URL = RESOURCE_URL;
+        //TODO
         this.ENCODE_BASIC_AUTH = HttpHeaders.encodeBasicAuth(RESOURCE_LOGIN, RESOURCE_PASSWORD, StandardCharsets.US_ASCII);
     }
 
@@ -39,7 +41,7 @@ public class CardOperation {
      */
     public BalanceDto getBalance(String number, int PIN) {
         final String uri = RESOURCE_URL + "/card/balance";
-        CardDto card = new CardDto(number, PIN);
+        CardDto card = CardDto.builder().number(number).PIN(PIN).build();
 
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders httpHeaders = new HttpHeaders();

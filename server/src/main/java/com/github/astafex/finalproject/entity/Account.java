@@ -15,10 +15,12 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @Table(name = "ACCOUNT")
+//TODO нет модификаторов доступа (вспомни почему)
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
+    //TODO long -> UUID
     long id;
 
     @Column(name = "NUMBER_ACCOUNT", unique = true, nullable = false)

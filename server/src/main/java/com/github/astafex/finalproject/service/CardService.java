@@ -45,6 +45,7 @@ public class CardService {
      * @param PIN  пин-код карты
      * @throws CardCheckException если не пройдена какая-либо проверка действующей карты
      */
+    //todo вынести в утилитный класс
     private void checkCard(Card card, int PIN) {
         String checkMessage = "";
 
